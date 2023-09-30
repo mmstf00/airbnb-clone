@@ -34,7 +34,7 @@ const RegisterModal = () => {
 
     // Send POST request to backend with the data (name, email, password)
     axios
-      .post("api/register", data)
+      .post("/api/register", data) // TODO: replace with Backend URL:PORT
       .then(() => {
         // Close the modal if the registration is successful
         registerModal.onClose();
