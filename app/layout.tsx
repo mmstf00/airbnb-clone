@@ -1,4 +1,5 @@
 import getCurrentUser from "./actions/getCurrentUser";
+import ClientOnly from "./components/ClientOnly";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import RentModal from "./components/modals/RentModal";
@@ -21,12 +22,14 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body>
-        <ToasterProvider />
-        <RentModal />
-        <RegisterModal />
-        <LoginModal />
+        <ClientOnly>
+          <ToasterProvider />
+          <RentModal />
+          <RegisterModal />
+          <LoginModal />
+        </ClientOnly>
         <Navbar currentUser={currentUser} />
-        {children}
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
   );
