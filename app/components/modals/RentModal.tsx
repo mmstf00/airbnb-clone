@@ -21,7 +21,7 @@ enum STEPS {
   LOCATION = 1,
   INFO = 2,
   IMAGES = 3,
-  DECRIPTION = 4,
+  DESCRIPTION = 4,
   PRICE = 5,
 }
 
@@ -220,7 +220,7 @@ const RentModal = () => {
     );
   }
 
-  if (step === STEPS.DECRIPTION) {
+  if (step === STEPS.DESCRIPTION) {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
@@ -238,8 +238,8 @@ const RentModal = () => {
         />
         <hr />
         <Input
-          id="decription"
-          label="Decription"
+          id="description"
+          label="Description"
           disabled={isLoading}
           register={register}
           errors={errors}
