@@ -1,13 +1,14 @@
 import prisma from "@/app/libs/prismadb";
 
 interface IParams {
-  listingId?: string
-  userId?: string
-  authorId?: string
+  listingId?: string;
+  userId?: string;
+  authorId?: string;
 }
 
-export default async function getReservations(params: IParams) {
-
+export default async function getReservations(
+  params: IParams
+) {
   try {
     const { listingId, userId, authorId } = params;
     const query: any = {};
@@ -15,7 +16,7 @@ export default async function getReservations(params: IParams) {
     // If we search by listingId, then it will find all reservations for the single listingId
     if (listingId) {
       query.listingId = listingId;
-    }
+    };
 
     // If we search by userId, then it will find all the trips that user have
     if (userId) {
@@ -33,21 +34,22 @@ export default async function getReservations(params: IParams) {
         listing: true
       },
       orderBy: {
-        createdAt: "desc"
+        createdAt: 'desc'
       }
     });
 
     // Because we are working with dates, making it safer by converting the dates to
-    const safeReservations = reservations.map((reservation) => ({
-      ...reservation,
-      createdAt: reservation.createdAt.toISOString(),
-      startDate: reservation.startDate.toISOString(),
-      endDate: reservation.endDate.toISOString(),
-      listing: {
-        ...reservation.listing,
-        createdAt: reservation.listing.createdAt.toISOString()
-      }
-    }));
+    const safeReservations = reservations.map(
+      (reservation) => ({
+        ...reservation,
+        createdAt: reservation.createdAt.toISOString(),
+        startDate: reservation.startDate.toISOString(),
+        endDate: reservation.endDate.toISOString(),
+        listing: {
+          ...reservation.listing,
+          createdAt: reservation.listing.createdAt.toISOString(),
+        },
+      }));
 
     return safeReservations;
   } catch (error: any) {

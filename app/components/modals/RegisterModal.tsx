@@ -42,6 +42,7 @@ const RegisterModal = () => {
         // Close the modal if the registration is successful
         toast.success("Registered!");
         registerModal.onClose();
+        loginModal.onOpen();
       })
       .catch((error) => {
         toast.error("Something went wrong.");
